@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,11 @@ public class Pathfinder : MonoBehaviour
 
     [SerializeField] Waypoint start, end;
 
-    [SerializeField] bool isRunning = true;
+    bool isRunning = true;
+
+    Waypoint searchCenter;
+
+    List<Waypoint> path = new List<Waypoint>();
 
     Vector2Int[] directions =
     {
@@ -20,29 +25,53 @@ public class Pathfinder : MonoBehaviour
         Vector2Int.down,
         Vector2Int.left
     };
-
-
-    void Start()
+    
+    public List<Waypoint> GetPath()
     {
         LoadBlocks();
+        BreadthFirstSearch();
+        CreatePath();
         ColorStartAndEnd();
-        Pathfind();
-        //ExploreNeighbours();
+        return path;
     }
 
-    private void Pathfind()
+
+    private void CreatePath()
+    {
+        path.Add(end);
+        Waypoint previous = end.exploredFrom;
+
+        while (previous != start)
+        {
+            path.Add(previous);
+            previous = previous.exploredFrom;
+        }
+
+        path.Add(start);
+        path.Reverse();
+
+        foreach (Waypoint point in path) {
+            point.SetTopColor(Color.blue);
+        }
+
+
+        
+
+    }
+
+    private void BreadthFirstSearch()
     {
         
         queue.Enqueue(start);
 
         while(queue.Count > 0 && isRunning)
         {
-            Waypoint searchCenter = queue.Dequeue();
+             searchCenter = queue.Dequeue();
             
-            print("Searching from " + searchCenter); // remove
             
-            HaltIfEndFound(searchCenter);
-        ExploreNeighbours(searchCenter);
+            
+            HaltIfEndFound();
+        ExploreNeighbours();
         searchCenter.isExplored = true;
         }
         print("Finished pathfinding");
@@ -50,7 +79,7 @@ public class Pathfinder : MonoBehaviour
         
     }
 
-    private void HaltIfEndFound(Waypoint searchCenter)
+    private void HaltIfEndFound()
     {
         if (searchCenter == end)
         {
@@ -59,22 +88,19 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-    private void ExploreNeighbours(Waypoint from)
+    private void ExploreNeighbours()
     {
         if (!isRunning) { return; }
 
         foreach(Vector2Int direction in directions)
         {
             
-            Vector2Int neighbourCoordinates = from.GetGridPos() + direction;
-            try
+            Vector2Int neighbourCoordinates = searchCenter.GetGridPos() + direction;
+            if (grid.ContainsKey(neighbourCoordinates))
             {
                 QueueNewNeighbours(neighbourCoordinates);
             }
-            catch
-            {
-                
-            }
+
         }
     }
 
@@ -82,19 +108,20 @@ public class Pathfinder : MonoBehaviour
     {
 
         Waypoint neighbour = grid[neighbourCoordinates];
-        if (neighbour.isExplored)
+        if (neighbour.isExplored || queue.Contains(neighbour))
         {
-            print("already explored " + neighbour);
+            //print("already explored " + neighbour);
         } else
         {
-            neighbour.SetTopColor(Color.blue); // todo move later
+            
+            neighbour.exploredFrom = searchCenter;
             queue.Enqueue(neighbour);
-            print("queueing " + neighbour);
+            //print("queueing " + neighbour);
         }
         
     }
 
-    private void ColorStartAndEnd()
+    private void ColorStartAndEnd() // todo consider moving out
     {
         start.SetTopColor(Color.green);
         end.SetTopColor(Color.red);
@@ -109,7 +136,7 @@ public class Pathfinder : MonoBehaviour
 
             if (grid.ContainsKey(gridPos))
             {
-                Debug.LogWarning("Skipping verlapping block" + waypoint);
+                Debug.LogWarning("Skipping overlapping block" + waypoint);
             }
             else
             {
