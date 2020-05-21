@@ -13,7 +13,7 @@ public class Pathfinder : MonoBehaviour
     [SerializeField] Waypoint start, end;
 
     bool isRunning = true;
-
+    bool pathCalculated = false;
     Waypoint searchCenter;
 
     List<Waypoint> path = new List<Waypoint>();
@@ -28,13 +28,21 @@ public class Pathfinder : MonoBehaviour
     
     public List<Waypoint> GetPath()
     {
+        if (path.Count == 0)
+        {
+            CalculatePath();  
+        }
+        return path;
+    }
+
+    private void CalculatePath()
+    {
         LoadBlocks();
         BreadthFirstSearch();
         CreatePath();
         ColorStartAndEnd();
-        return path;
+        pathCalculated = false;
     }
-
 
     private void CreatePath()
     {
