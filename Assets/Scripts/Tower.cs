@@ -17,7 +17,8 @@ public class Tower : MonoBehaviour
     void Update()
     {
         SetTargetEnemy();
-        if (targetEnemy)
+
+        if (targetEnemy != null)
         {
             ProcessFiring();
         } else
@@ -32,6 +33,7 @@ public class Tower : MonoBehaviour
     {
         var enemies = FindObjectsOfType<EnemyDamage>();
         if (enemies.Length == 0) {return;}
+
         else {
           Transform closestEnemy = enemies[0].transform;
 
