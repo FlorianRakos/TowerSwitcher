@@ -46,23 +46,22 @@ public class Pathfinder : MonoBehaviour
 
     private void CreatePath()
     {
-        path.Add(end);
+        SetAsPath(end);
         Waypoint previous = end.exploredFrom;
 
         while (previous != start)
         {
-            path.Add(previous);
+            SetAsPath(previous);
             previous = previous.exploredFrom;
         }
 
-        path.Add(start);
+        SetAsPath(start);
         path.Reverse();
+    }
 
-        
-
-
-        
-
+    private void SetAsPath(Waypoint waypoint) {
+        path.Add(waypoint);
+        waypoint.isPlacable = false;
     }
 
     private void BreadthFirstSearch()
@@ -80,7 +79,7 @@ public class Pathfinder : MonoBehaviour
         ExploreNeighbours();
         searchCenter.isExplored = true;
         }
-        print("Finished pathfinding");
+        //print("Finished pathfinding");
         
         
     }
@@ -89,7 +88,7 @@ public class Pathfinder : MonoBehaviour
     {
         if (searchCenter == end)
         {
-            print("End found");
+            //print("End found");
             isRunning = false;
         }
     }

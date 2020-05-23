@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Waypoint : MonoBehaviour
 {
-    [SerializeField] Color exploredColor;
-    // public ok here as is a data class
+
     public bool isExplored = false;
     public Waypoint exploredFrom;
+    public bool isPlacable = true;
+
+    [SerializeField] Color exploredColor;
+    [SerializeField] GameObject towerPrefab;
+    
 
     Vector2Int gridPos;
 
@@ -34,15 +39,21 @@ public class Waypoint : MonoBehaviour
 
     }
 
-    public void SetTopColor (Color color)
-    {
-
-        MeshRenderer topMeshRenderer = transform.Find("Top").GetComponent<MeshRenderer>();
-        topMeshRenderer.material.color = color;
-
-    }
+   
 
     void OnMouseOver() {
-        print(gameObject.name);
+        if(Input.GetMouseButtonDown(0)) {
+
+            if(isPlacable) {
+                
+                Instantiate(towerPrefab, gameObject.transform.position, Quaternion.identity);
+                isPlacable = false;
+
+            } else {
+                //print("cant place");
+            }
+          
+        }
+        
     }
 }

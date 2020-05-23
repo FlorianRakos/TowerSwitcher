@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
     
     IEnumerator FollowPath(List<Waypoint> path)
     {
-        print("Starting Patrol");
+        //print("Starting Patrol");
 
         foreach (Waypoint wayPoint in path)
         {
@@ -24,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
            
             yield return new WaitForSeconds(2f);
         }
-        print("Ending Patrol");
+        //print("Ending Patrol");
 
     }
 

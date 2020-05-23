@@ -41,7 +41,7 @@ public class Tower : MonoBehaviour
             if (distanceCurrent < distanceClosest) {
                 closestEnemy = enemy.transform;
                 
-                print("enemy changed to" + closestEnemy);
+                //print("enemy changed to" + closestEnemy);
             }          
           }
           targetEnemy = closestEnemy;
@@ -68,7 +68,7 @@ public class Tower : MonoBehaviour
 
     private void fireAtEnemy(bool isActive)
     {
-        objectToPan.LookAt(targetEnemy);
+        objectToPan.LookAt(targetEnemy.Find("Body").transform.position); //string dependent
         var emissionModule = bullets.emission;
         emissionModule.enabled = isActive;
         

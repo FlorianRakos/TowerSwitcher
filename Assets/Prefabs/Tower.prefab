@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToPan: {fileID: 8803126479464602742}
-  targetEnemy: {fileID: 0}
   attackRange: 40
   bullets: {fileID: 3691550350208847576}
 --- !u!1001 &8801281226889996318
@@ -235,6 +234,11 @@ PrefabInstance:
         type: 3}
       propertyPath: CollisionModule.collisionMessages
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269048668946235710, guid: 755d0c6e1dac0394fa392c2f50729bb3,
+        type: 3}
+      propertyPath: CollisionModule.minKillSpeed
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 755d0c6e1dac0394fa392c2f50729bb3, type: 3}
