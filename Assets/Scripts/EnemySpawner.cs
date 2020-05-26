@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] float spawnTime = 2f;
     [SerializeField] EnemyMovement Enemy;
+    [SerializeField] Transform parent;
     
     void Start()
     {
@@ -17,7 +18,8 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true) // forever
         {
-            Instantiate(Enemy, transform.position, Quaternion.identity);
+            EnemyMovement enemy = Instantiate(Enemy, transform.position, Quaternion.identity);
+            enemy.transform.parent = parent;
             //print("done");
             yield return new WaitForSeconds(spawnTime);
         }

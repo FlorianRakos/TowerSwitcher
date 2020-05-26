@@ -9,6 +9,8 @@ public class Tower : MonoBehaviour
     [SerializeField] Transform objectToPan;
     [SerializeField] float attackRange = 100f;
     [SerializeField] ParticleSystem bullets;
+
+    public Waypoint baseWaypoint; 
     
     // state of each tower
      Transform targetEnemy;
@@ -75,4 +77,6 @@ public class Tower : MonoBehaviour
         emissionModule.enabled = isActive;
         
     }
+
+    
 }
