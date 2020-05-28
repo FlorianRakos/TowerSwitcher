@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    
+    [SerializeField] float movementPeriod = .5f;
+    [SerializeField] ParticleSystem goalParticle;
+    EnemyDamage enemyDamage;
 
     void Start()
     {
@@ -22,10 +24,18 @@ public class EnemyMovement : MonoBehaviour
             
             transform.position = wayPoint.transform.position;
            
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(movementPeriod);            
         }
-        //print("Ending Patrol");
+       SelfDestruct();
 
+    }
+
+ private void SelfDestruct()
+    {
+        ParticleSystem vfx = Instantiate(goalParticle, transform.position, Quaternion.identity);
+        vfx.Play();
+        Destroy(vfx.gameObject, vfx.main.duration);
+        Destroy(gameObject);
     }
 
     

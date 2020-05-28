@@ -10,11 +10,6 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] ParticleSystem deathParticlePrefab;
 
 
-    void Start()
-    {
-        
-    }
-
     private void OnParticleCollision(GameObject other)
     {
         //print("Im hit");
@@ -35,7 +30,7 @@ public class EnemyDamage : MonoBehaviour
 
     }
 
-    private void KillEnemy()
+    public void KillEnemy()
     {
         ParticleSystem vfx = Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
         vfx.Play();

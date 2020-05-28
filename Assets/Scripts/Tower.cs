@@ -34,7 +34,7 @@ public class Tower : MonoBehaviour
     private void SetTargetEnemy()
     {
         var enemies = FindObjectsOfType<EnemyDamage>();
-        if (enemies.Length == 0) {return;}
+        if (enemies.Length == 0) {print("return"); return;}
 
         else {
           Transform closestEnemy = enemies[0].transform;
@@ -72,7 +72,7 @@ public class Tower : MonoBehaviour
 
     private void fireAtEnemy(bool isActive)
     {
-        objectToPan.LookAt(targetEnemy.Find("Body").transform.position); //string dependent
+        if(isActive) { objectToPan.LookAt(targetEnemy.Find("Body").transform.position);} //string dependent
         var emissionModule = bullets.emission;
         emissionModule.enabled = isActive;
         
