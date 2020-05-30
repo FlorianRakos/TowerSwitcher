@@ -34,7 +34,9 @@ public class EnemyMovement : MonoBehaviour
     {
         ParticleSystem vfx = Instantiate(goalParticle, transform.position, Quaternion.identity);
         vfx.Play();
+        
         Destroy(vfx.gameObject, vfx.main.duration);
+
         Destroy(gameObject);
     }
 
