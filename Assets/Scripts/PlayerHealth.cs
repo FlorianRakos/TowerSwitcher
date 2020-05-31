@@ -16,7 +16,6 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void OnTriggerEnter() {
-        print("triggered");
         healtPoints = healtPoints - healthDecrease;
         healthText.text = healtPoints.ToString();
         GetComponent<AudioSource>().PlayOneShot(goalReachedSFX);
