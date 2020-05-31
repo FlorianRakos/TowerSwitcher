@@ -67,7 +67,7 @@ MonoBehaviour:
   movementPeriod: 0.5
   goalParticle: {fileID: 198537984209914932, guid: a9df3140327f9a34395e01d1d8f57650,
     type: 3}
-  goalReachedSFX: {fileID: 8300000, guid: e70cd7c62754c92459faa43ad9575d41, type: 3}
+  speed: 15
 --- !u!114 &114078703179129330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,11 +80,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc40e55bde422c4196720794c956df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 5
+  hitPoints: 15
   hitParticlePrefab: {fileID: 4075238683440813541}
   deathParticlePrefab: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
     type: 3}
-  damagedSFX: {fileID: 8300000, guid: dc90a0b5c596efc4fbd92e6213e4c8c8, type: 3}
+  enemyDamagedSFX: {fileID: 8300000, guid: dc90a0b5c596efc4fbd92e6213e4c8c8, type: 3}
+  enemyKilledSFX: {fileID: 8300000, guid: f59b7ddd2868147418d0c918c1340956, type: 3}
 --- !u!82 &53364761495672752
 AudioSource:
   m_ObjectHideFlags: 0
