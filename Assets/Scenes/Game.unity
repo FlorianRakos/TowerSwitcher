@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2123d6e39cab84fa4dc70aafb4b666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 4
+  spawnTime: 8
   Enemy: {fileID: 114941686308246830, guid: 04f81ff9814844ccfa08226f8d46a3f4, type: 3}
   parent: {fileID: 169675902}
   spawnedEnemys: {fileID: 1958114393}

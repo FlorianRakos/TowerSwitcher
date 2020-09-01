@@ -13,7 +13,7 @@ public class ColorPath : MonoBehaviour
     {
         Pathfinder pathfinder = FindObjectOfType<Pathfinder>();   
         var path = pathfinder.GetPath();
-        print(path.Count);
+
 
         foreach(Waypoint waypoint in path) {
             var cube =  waypoint.gameObject;

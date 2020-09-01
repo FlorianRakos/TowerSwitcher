@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 114941686308246830}
   - component: {fileID: 114078703179129330}
   - component: {fileID: 53364761495672752}
+  - component: {fileID: -5739614077815615747}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -68,6 +69,9 @@ MonoBehaviour:
   goalParticle: {fileID: 198537984209914932, guid: a9df3140327f9a34395e01d1d8f57650,
     type: 3}
   speed: 15
+  spinnSpeed: 0.5
+  bounceHeight: 1.5
+  bounceSpeed: 0.01
 --- !u!114 &114078703179129330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +186,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!122 &-5739614077815615747
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289942997295908}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190335
+  m_Size: 5
 --- !u!1 &1646541640735296
 GameObject:
   m_ObjectHideFlags: 0
