@@ -6,14 +6,10 @@ public class ColorPath : MonoBehaviour
 {
     [SerializeField] GameObject newCube;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         Pathfinder pathfinder = FindObjectOfType<Pathfinder>();   
         var path = pathfinder.GetPath();
-
 
         foreach(Waypoint waypoint in path) {
             var cube =  waypoint.gameObject;
@@ -24,10 +20,6 @@ public class ColorPath : MonoBehaviour
 
             var instCube = Instantiate(newCube, childTransform.position, childRotation);
             instCube.transform.parent = cube.transform;
-
-
         }
     }
-
-
 }

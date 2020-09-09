@@ -22,8 +22,6 @@ public class TowerFactory : MonoBehaviour
         {
             MoveExistingTower(baseWaypoint);
         }
-
-
     }
 
     private void InstantiateNewTower(Waypoint baseWaypoint)
@@ -33,9 +31,7 @@ public class TowerFactory : MonoBehaviour
         baseWaypoint.isPlacable = false;
         newTower.baseWaypoint = baseWaypoint;
 
-        towerQueue.Enqueue(newTower);
-        
-        
+        towerQueue.Enqueue(newTower);        
     }
 
     private void MoveExistingTower(Waypoint newBaseWaypoint)
@@ -49,10 +45,5 @@ public class TowerFactory : MonoBehaviour
         oldTower.transform.position = newBaseWaypoint.transform.position;
 
         towerQueue.Enqueue(oldTower);
-
-
-        print("max towers");
     }
-
-
 }

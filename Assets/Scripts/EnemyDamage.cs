@@ -13,30 +13,29 @@ public class EnemyDamage : MonoBehaviour
 
     AudioSource myAudiosource;
 
-    void Start () {
+    void Start()
+    {
         myAudiosource = GetComponent<AudioSource>();
     }
 
-
     private void OnParticleCollision(GameObject other)
     {
-        //print("Im hit");
         ProcessHit();
     }
 
-    void ProcessHit ()
+    void ProcessHit()
     {
         hitPoints = hitPoints - 1;
-        //print("Current HP" + hitPoints);
-        
+
         if (hitPoints <= 0)
         {
             KillEnemy();
-        } else {
-         hitParticlePrefab.Play();   
-         myAudiosource.PlayOneShot(enemyDamagedSFX);
         }
-
+        else
+        {
+            hitParticlePrefab.Play();
+            myAudiosource.PlayOneShot(enemyDamagedSFX);
+        }
     }
 
     private void KillEnemy()
@@ -44,9 +43,7 @@ public class EnemyDamage : MonoBehaviour
         ParticleSystem vfx = Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
         vfx.Play();
         Destroy(vfx.gameObject, vfx.main.duration);
-
-        AudioSource .PlayClipAtPoint(enemyKilledSFX, Camera.main.transform.position);
-
+        AudioSource.PlayClipAtPoint(enemyKilledSFX, Camera.main.transform.position);
         Destroy(gameObject);
     }
 }

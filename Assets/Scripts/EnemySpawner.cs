@@ -13,25 +13,21 @@ public class EnemySpawner : MonoBehaviour
 
     int score;
 
-    
     void Start()
     {
         StartCoroutine(SpawnEnemys());
     }
 
-    
-    IEnumerator SpawnEnemys ()
+    IEnumerator SpawnEnemys()
     {
-        while (true) // forever
+        while (true)
         {
             EnemyMovement enemy = Instantiate(Enemy, transform.position, Quaternion.identity);
             enemy.transform.parent = parent;
-            //print("done");
             AddScore();
             GetComponent<AudioSource>().PlayOneShot(spawnedEnemySFX);
             yield return new WaitForSeconds(spawnTime);
         }
-
     }
 
     private void AddScore()

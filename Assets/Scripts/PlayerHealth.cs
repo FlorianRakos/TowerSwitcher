@@ -11,15 +11,15 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] Text healthText;
     [SerializeField] AudioClip goalReachedSFX;
 
-    void Start () {
+    void Start()
+    {
         healthText.text = healtPoints.ToString();
     }
 
-    private void OnTriggerEnter() {
+    private void OnTriggerEnter()
+    {
         healtPoints = healtPoints - healthDecrease;
         healthText.text = healtPoints.ToString();
         GetComponent<AudioSource>().PlayOneShot(goalReachedSFX);
-        
     }
-    
 }
